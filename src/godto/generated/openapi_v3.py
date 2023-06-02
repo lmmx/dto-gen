@@ -6,9 +6,9 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Optional, Union
 
-Reference = Dict[str, str]
+Reference = dict[str, str]
 
 
 @dataclass
@@ -27,7 +27,7 @@ class License:
 @dataclass
 class ServerVariable:
     default: str
-    enum: Optional[List[str]] = None
+    enum: Optional[list[str]] = None
     description: Optional[str] = None
 
 
@@ -43,7 +43,7 @@ class Type(Enum):
 @dataclass
 class Discriminator:
     propertyName: str
-    mapping: Optional[Dict[str, str]] = None
+    mapping: Optional[dict[str, str]] = None
 
 
 @dataclass
@@ -67,7 +67,7 @@ class Style(Enum):
     simple = "simple"
 
 
-SecurityRequirement = Optional[Dict[str, List[str]]]
+SecurityRequirement = Optional[dict[str, list[str]]]
 
 
 @dataclass
@@ -222,21 +222,21 @@ class OpenIdConnectSecurityScheme:
 @dataclass
 class ImplicitOAuthFlow:
     authorizationUrl: str
-    scopes: Dict[str, str]
+    scopes: dict[str, str]
     refreshUrl: Optional[str] = None
 
 
 @dataclass
 class PasswordOAuthFlow:
     tokenUrl: str
-    scopes: Dict[str, str]
+    scopes: dict[str, str]
     refreshUrl: Optional[str] = None
 
 
 @dataclass
 class ClientCredentialsFlow:
     tokenUrl: str
-    scopes: Dict[str, str]
+    scopes: dict[str, str]
     refreshUrl: Optional[str] = None
 
 
@@ -244,11 +244,11 @@ class ClientCredentialsFlow:
 class AuthorizationCodeOAuthFlow:
     authorizationUrl: str
     tokenUrl: str
-    scopes: Dict[str, str]
+    scopes: dict[str, str]
     refreshUrl: Optional[str] = None
 
 
-Callback = Dict[str, Any]
+Callback = dict[str, Any]
 
 
 class Style5(Enum):
@@ -272,7 +272,7 @@ class Info:
 class Server:
     url: str
     description: Optional[str] = None
-    variables: Optional[Dict[str, ServerVariable]] = None
+    variables: Optional[dict[str, ServerVariable]] = None
 
 
 @dataclass
@@ -291,15 +291,15 @@ class Schema:
     uniqueItems: Optional[bool] = False
     maxProperties: Optional[int] = None
     minProperties: Optional[int] = 0
-    required: Optional[List[str]] = None
-    enum: Optional[List] = None
+    required: Optional[list[str]] = None
+    enum: Optional[list] = None
     type: Optional[Type] = None
     not_: Optional[Union[Schema, Reference]] = None
-    allOf: Optional[List[Union[Schema, Reference]]] = None
-    oneOf: Optional[List[Union[Schema, Reference]]] = None
-    anyOf: Optional[List[Union[Schema, Reference]]] = None
+    allOf: Optional[list[Union[Schema, Reference]]] = None
+    oneOf: Optional[list[Union[Schema, Reference]]] = None
+    anyOf: Optional[list[Union[Schema, Reference]]] = None
     items: Optional[Union[Schema, Reference]] = None
-    properties: Optional[Dict[str, Union[Schema, Reference]]] = None
+    properties: Optional[dict[str, Union[Schema, Reference]]] = None
     additionalProperties: Optional[Union[Schema, Reference, bool]] = True
     description: Optional[str] = None
     format: Optional[str] = None
@@ -333,7 +333,7 @@ class OAuthFlows:
 class Link:
     operationId: Optional[str] = None
     operationRef: Optional[str] = None
-    parameters: Optional[Dict[str, Any]] = None
+    parameters: Optional[dict[str, Any]] = None
     requestBody: Optional[Any] = None
     description: Optional[str] = None
     server: Optional[Server] = None
@@ -360,39 +360,39 @@ class Model:
     info: Info
     paths: Paths
     externalDocs: Optional[ExternalDocumentation] = None
-    servers: Optional[List[Server]] = None
-    security: Optional[List[SecurityRequirement]] = None
-    tags: Optional[List[Tag]] = None
+    servers: Optional[list[Server]] = None
+    security: Optional[list[SecurityRequirement]] = None
+    tags: Optional[list[Tag]] = None
     components: Optional[Components] = None
 
 
 @dataclass
 class Components:
-    schemas: Optional[Dict[str, Union[Schema, Reference]]] = None
-    responses: Optional[Dict[str, Union[Reference, Response]]] = None
-    parameters: Optional[Dict[str, Union[Reference, Parameter]]] = None
-    examples: Optional[Dict[str, Union[Reference, Example]]] = None
-    requestBodies: Optional[Dict[str, Union[Reference, RequestBody]]] = None
-    headers: Optional[Dict[str, Union[Reference, Header]]] = None
-    securitySchemes: Optional[Dict[str, Union[Reference, SecurityScheme]]] = None
-    links: Optional[Dict[str, Union[Reference, Link]]] = None
-    callbacks: Optional[Dict[str, Union[Reference, Callback]]] = None
+    schemas: Optional[dict[str, Union[Schema, Reference]]] = None
+    responses: Optional[dict[str, Union[Reference, Response]]] = None
+    parameters: Optional[dict[str, Union[Reference, Parameter]]] = None
+    examples: Optional[dict[str, Union[Reference, Example]]] = None
+    requestBodies: Optional[dict[str, Union[Reference, RequestBody]]] = None
+    headers: Optional[dict[str, Union[Reference, Header]]] = None
+    securitySchemes: Optional[dict[str, Union[Reference, SecurityScheme]]] = None
+    links: Optional[dict[str, Union[Reference, Link]]] = None
+    callbacks: Optional[dict[str, Union[Reference, Callback]]] = None
 
 
 @dataclass
 class Response:
     description: str
-    headers: Optional[Dict[str, Union[Header, Reference]]] = None
-    content: Optional[Dict[str, MediaType]] = None
-    links: Optional[Dict[str, Union[Link, Reference]]] = None
+    headers: Optional[dict[str, Union[Header, Reference]]] = None
+    content: Optional[dict[str, MediaType]] = None
+    links: Optional[dict[str, Union[Link, Reference]]] = None
 
 
 @dataclass
 class MediaType:
     schema_: Optional[Union[Schema, Reference]] = None
     example: Optional[Any] = None
-    examples: Optional[Dict[str, Union[Example, Reference]]] = None
-    encoding: Optional[Dict[str, Encoding]] = None
+    examples: Optional[dict[str, Union[Example, Reference]]] = None
+    encoding: Optional[dict[str, Encoding]] = None
 
 
 @dataclass
@@ -405,9 +405,9 @@ class Header:
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = False
     schema_: Optional[Union[Schema, Reference]] = None
-    content: Optional[Dict[str, MediaType]] = None
+    content: Optional[dict[str, MediaType]] = None
     example: Optional[Any] = None
-    examples: Optional[Dict[str, Union[Example, Reference]]] = None
+    examples: Optional[dict[str, Union[Example, Reference]]] = None
 
 
 @dataclass
@@ -415,27 +415,27 @@ class PathItem:
     field_ref: Optional[str] = None
     summary: Optional[str] = None
     description: Optional[str] = None
-    servers: Optional[List[Server]] = None
-    parameters: Optional[List[Union[Parameter, Reference]]] = None
+    servers: Optional[list[Server]] = None
+    parameters: Optional[list[Union[Parameter, Reference]]] = None
 
 
-Paths = Union[Dict[str, PathItem], Dict[str, Any]]
+Paths = Union[dict[str, PathItem], dict[str, Any]]
 
 
 @dataclass
 class Operation:
     responses: Responses
-    tags: Optional[List[str]] = None
+    tags: Optional[list[str]] = None
     summary: Optional[str] = None
     description: Optional[str] = None
     externalDocs: Optional[ExternalDocumentation] = None
     operationId: Optional[str] = None
-    parameters: Optional[List[Union[Parameter, Reference]]] = None
+    parameters: Optional[list[Union[Parameter, Reference]]] = None
     requestBody: Optional[Union[RequestBody, Reference]] = None
-    callbacks: Optional[Dict[str, Union[Callback, Reference]]] = None
+    callbacks: Optional[dict[str, Union[Callback, Reference]]] = None
     deprecated: Optional[bool] = False
-    security: Optional[List[SecurityRequirement]] = None
-    servers: Optional[List[Server]] = None
+    security: Optional[list[SecurityRequirement]] = None
+    servers: Optional[list[Server]] = None
 
 
 @dataclass
@@ -455,14 +455,14 @@ class Parameter:
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = False
     schema_: Optional[Union[Schema, Reference]] = None
-    content: Optional[Dict[str, MediaType]] = None
+    content: Optional[dict[str, MediaType]] = None
     example: Optional[Any] = None
-    examples: Optional[Dict[str, Union[Example, Reference]]] = None
+    examples: Optional[dict[str, Union[Example, Reference]]] = None
 
 
 @dataclass
 class RequestBody:
-    content: Dict[str, MediaType]
+    content: dict[str, MediaType]
     description: Optional[str] = None
     required: Optional[bool] = False
 
@@ -470,7 +470,7 @@ class RequestBody:
 @dataclass
 class Encoding:
     contentType: Optional[str] = None
-    headers: Optional[Dict[str, Union[Header, Reference]]] = None
+    headers: Optional[dict[str, Union[Header, Reference]]] = None
     style: Optional[Style5] = None
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = False

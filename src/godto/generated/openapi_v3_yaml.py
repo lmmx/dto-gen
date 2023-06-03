@@ -12,20 +12,29 @@ Reference = dict[str, str]
 
 
 @dataclass
-class Contact:
+class Contact(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     name: Optional[str] = None
     url: Optional[str] = None
     email: Optional[str] = None
 
 
 @dataclass
-class License:
+class License(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     name: str
     url: Optional[str] = None
 
 
 @dataclass
-class ServerVariable:
+class ServerVariable(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     default: str
     enum: Optional[list[str]] = None
     description: Optional[str] = None
@@ -41,13 +50,19 @@ class Type(Enum):
 
 
 @dataclass
-class Discriminator:
+class Discriminator(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     propertyName: str
     mapping: Optional[dict[str, str]] = None
 
 
 @dataclass
-class XML:
+class XML(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     name: Optional[str] = None
     namespace: Optional[str] = None
     prefix: Optional[str] = None
@@ -56,7 +71,10 @@ class XML:
 
 
 @dataclass
-class Example:
+class Example(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     summary: Optional[str] = None
     description: Optional[str] = None
     value: Optional[Any] = None
@@ -71,7 +89,10 @@ SecurityRequirement = Optional[dict[str, list[str]]]
 
 
 @dataclass
-class ExternalDocumentation:
+class ExternalDocumentation(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     url: str
     description: Optional[str] = None
 
@@ -80,7 +101,10 @@ ExampleXORExamples = Any
 
 
 @dataclass
-class SchemaXORContentItem:
+class SchemaXORContentItem(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     pass
 
 
@@ -102,7 +126,10 @@ class Required(Enum):
 
 
 @dataclass
-class ParameterLocationItem:
+class ParameterLocationItem(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     required: Required
     in_: Optional[In] = None
     style: Optional[Style1] = 'simple'
@@ -120,7 +147,10 @@ class Style2(Enum):
 
 
 @dataclass
-class ParameterLocationItem1:
+class ParameterLocationItem1(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     in_: Optional[In1] = None
     style: Optional[Style2] = 'form'
 
@@ -134,7 +164,10 @@ class Style3(Enum):
 
 
 @dataclass
-class ParameterLocationItem2:
+class ParameterLocationItem2(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     in_: Optional[In2] = None
     style: Optional[Style3] = 'simple'
 
@@ -148,7 +181,10 @@ class Style4(Enum):
 
 
 @dataclass
-class ParameterLocationItem3:
+class ParameterLocationItem3(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     in_: Optional[In3] = None
     style: Optional[Style4] = 'form'
 
@@ -172,7 +208,10 @@ class In4(Enum):
 
 
 @dataclass
-class APIKeySecurityScheme:
+class APIKeySecurityScheme(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     type: Type1
     name: str
     in_: In4
@@ -180,12 +219,18 @@ class APIKeySecurityScheme:
 
 
 @dataclass
-class HTTPSecuritySchemeItem:
+class HTTPSecuritySchemeItem(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     scheme: Optional[str] = None
 
 
 @dataclass
-class HTTPSecuritySchemeItem1:
+class HTTPSecuritySchemeItem1(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     scheme: Optional[Any] = None
 
 
@@ -194,7 +239,10 @@ class Type2(Enum):
 
 
 @dataclass
-class HTTPSecurityScheme1(HTTPSecuritySchemeItem):
+class HTTPSecurityScheme1(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+(HTTPSecuritySchemeItem)
     scheme: str
     type: Type2
     bearerFormat: Optional[str] = None
@@ -202,7 +250,10 @@ class HTTPSecurityScheme1(HTTPSecuritySchemeItem):
 
 
 @dataclass
-class HTTPSecurityScheme2(HTTPSecuritySchemeItem1):
+class HTTPSecurityScheme2(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+(HTTPSecuritySchemeItem1)
     scheme: str
     type: Type2
     bearerFormat: Optional[str] = None
@@ -221,35 +272,50 @@ class Type5(Enum):
 
 
 @dataclass
-class OpenIdConnectSecurityScheme:
+class OpenIdConnectSecurityScheme(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     type: Type5
     openIdConnectUrl: str
     description: Optional[str] = None
 
 
 @dataclass
-class ImplicitOAuthFlow:
+class ImplicitOAuthFlow(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     authorizationUrl: str
     scopes: dict[str, str]
     refreshUrl: Optional[str] = None
 
 
 @dataclass
-class PasswordOAuthFlow:
+class PasswordOAuthFlow(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     tokenUrl: str
     scopes: dict[str, str]
     refreshUrl: Optional[str] = None
 
 
 @dataclass
-class ClientCredentialsFlow:
+class ClientCredentialsFlow(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     tokenUrl: str
     scopes: dict[str, str]
     refreshUrl: Optional[str] = None
 
 
 @dataclass
-class AuthorizationCodeOAuthFlow:
+class AuthorizationCodeOAuthFlow(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     authorizationUrl: str
     tokenUrl: str
     scopes: dict[str, str]
@@ -267,7 +333,10 @@ class Style5(Enum):
 
 
 @dataclass
-class Info:
+class Info(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     title: str
     version: str
     description: Optional[str] = None
@@ -277,14 +346,20 @@ class Info:
 
 
 @dataclass
-class Server:
+class Server(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     url: str
     description: Optional[str] = None
     variables: Optional[dict[str, ServerVariable]] = None
 
 
 @dataclass
-class Schema:
+class Schema(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     title: Optional[str] = None
     multipleOf: Optional[float] = None
     maximum: Optional[float] = None
@@ -323,14 +398,20 @@ class Schema:
 
 
 @dataclass
-class Tag:
+class Tag(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     name: str
     description: Optional[str] = None
     externalDocs: Optional[ExternalDocumentation] = None
 
 
 @dataclass
-class OAuthFlows:
+class OAuthFlows(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     implicit: Optional[ImplicitOAuthFlow] = None
     password: Optional[PasswordOAuthFlow] = None
     clientCredentials: Optional[ClientCredentialsFlow] = None
@@ -338,7 +419,10 @@ class OAuthFlows:
 
 
 @dataclass
-class Link:
+class Link(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     operationId: Optional[str] = None
     operationRef: Optional[str] = None
     parameters: Optional[dict[str, Any]] = None
@@ -348,7 +432,10 @@ class Link:
 
 
 @dataclass
-class OAuth2SecurityScheme:
+class OAuth2SecurityScheme(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     type: Type4
     flows: OAuthFlows
     description: Optional[str] = None
@@ -363,7 +450,10 @@ SecurityScheme = Union[
 
 
 @dataclass
-class Model:
+class Model(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     openapi: str
     info: Info
     paths: Paths
@@ -375,7 +465,10 @@ class Model:
 
 
 @dataclass
-class Components:
+class Components(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     schemas: Optional[dict[str, Union[Schema, Reference]]] = None
     responses: Optional[dict[str, Union[Reference, Response]]] = None
     parameters: Optional[dict[str, Union[Reference, Parameter]]] = None
@@ -388,7 +481,10 @@ class Components:
 
 
 @dataclass
-class Response:
+class Response(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     description: str
     headers: Optional[dict[str, Union[Header, Reference]]] = None
     content: Optional[dict[str, MediaType]] = None
@@ -396,7 +492,10 @@ class Response:
 
 
 @dataclass
-class MediaType:
+class MediaType(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     schema_: Optional[Union[Schema, Reference]] = None
     example: Optional[Any] = None
     examples: Optional[dict[str, Union[Example, Reference]]] = None
@@ -404,7 +503,10 @@ class MediaType:
 
 
 @dataclass
-class Header:
+class Header(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     description: Optional[str] = None
     required: Optional[bool] = False
     deprecated: Optional[bool] = False
@@ -422,7 +524,10 @@ Paths = Union[dict[str, PathItem], dict[str, Any]]
 
 
 @dataclass
-class PathItem:
+class PathItem(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     field_ref: Optional[str] = None
     summary: Optional[str] = None
     description: Optional[str] = None
@@ -439,7 +544,10 @@ class PathItem:
 
 
 @dataclass
-class Operation:
+class Operation(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     responses: Responses
     tags: Optional[list[str]] = None
     summary: Optional[str] = None
@@ -455,12 +563,18 @@ class Operation:
 
 
 @dataclass
-class Responses:
+class Responses(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     default: Optional[Union[Response, Reference]] = None
 
 
 @dataclass
-class Parameter:
+class Parameter(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     name: str
     in_: str
     description: Optional[str] = None
@@ -477,14 +591,20 @@ class Parameter:
 
 
 @dataclass
-class RequestBody:
+class RequestBody(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     content: dict[str, MediaType]
     description: Optional[str] = None
     required: Optional[bool] = False
 
 
 @dataclass
-class Encoding:
+class Encoding(JSONWizard):
+    class Meta(JSONWizard.Meta):
+        recursive_classes = True
+
     contentType: Optional[str] = None
     headers: Optional[dict[str, Union[Header, Reference]]] = None
     style: Optional[Style5] = None

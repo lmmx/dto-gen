@@ -8,6 +8,8 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Optional, Union
 
+from dataclass_wizard import JSONWizard
+
 Reference = dict[str, str]
 
 

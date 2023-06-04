@@ -12,7 +12,7 @@ PROJECT_URLS = {
     "Source Code": f"https://github.com/lmmx/godto",
 }
 CLASSIFIERS = [
-    "Development Status :: 1 - Planning",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Natural Language :: English",
     "License :: OSI Approved :: MIT License",
@@ -21,6 +21,7 @@ CLASSIFIERS = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Internet :: WWW/HTTP",
 ]
 INSTALL_REQUIRES = Path("requirements.txt").read_text().splitlines()

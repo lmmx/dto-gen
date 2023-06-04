@@ -8,7 +8,7 @@ To work with an OpenAPI schema, load it with the `Model` class,
 which is a [Dataclass Wizard](https://github.com/rnag/dataclass-wizard/) deserialiser.
 
 ```py
-from godto.openapi_v3 import Model
+from godto.openapi.v3 import Model
 
 model = Model.from_json(schema_json)
 ```

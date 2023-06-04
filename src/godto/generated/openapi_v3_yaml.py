@@ -43,12 +43,12 @@ class ServerVariable(JSONWizard):
 
 
 class Type(Enum):
-    array = 'array'
-    boolean = 'boolean'
-    integer = 'integer'
-    number = 'number'
-    object = 'object'
-    string = 'string'
+    array = "array"
+    boolean = "boolean"
+    integer = "integer"
+    number = "number"
+    object = "object"
+    string = "string"
 
 
 @dataclass
@@ -84,7 +84,7 @@ class Example(JSONWizard):
 
 
 class Style(Enum):
-    simple = 'simple'
+    simple = "simple"
 
 
 SecurityRequirement = Optional[Dict[str, List[str]]]
@@ -114,13 +114,13 @@ SchemaXORContent = Union[Any, SchemaXORContentItem]
 
 
 class In(Enum):
-    path = 'path'
+    path = "path"
 
 
 class Style1(Enum):
-    matrix = 'matrix'
-    label = 'label'
-    simple = 'simple'
+    matrix = "matrix"
+    label = "label"
+    simple = "simple"
 
 
 class Required(Enum):
@@ -134,18 +134,18 @@ class ParameterLocationItem(JSONWizard):
 
     required: Required
     in_: Optional[In] = None
-    style: Optional[Style1] = 'simple'
+    style: Optional[Style1] = "simple"
 
 
 class In1(Enum):
-    query = 'query'
+    query = "query"
 
 
 class Style2(Enum):
-    form = 'form'
-    spaceDelimited = 'spaceDelimited'
-    pipeDelimited = 'pipeDelimited'
-    deepObject = 'deepObject'
+    form = "form"
+    spaceDelimited = "spaceDelimited"
+    pipeDelimited = "pipeDelimited"
+    deepObject = "deepObject"
 
 
 @dataclass
@@ -154,15 +154,15 @@ class ParameterLocationItem1(JSONWizard):
         recursive_classes = True
 
     in_: Optional[In1] = None
-    style: Optional[Style2] = 'form'
+    style: Optional[Style2] = "form"
 
 
 class In2(Enum):
-    header = 'header'
+    header = "header"
 
 
 class Style3(Enum):
-    simple = 'simple'
+    simple = "simple"
 
 
 @dataclass
@@ -171,15 +171,15 @@ class ParameterLocationItem2(JSONWizard):
         recursive_classes = True
 
     in_: Optional[In2] = None
-    style: Optional[Style3] = 'simple'
+    style: Optional[Style3] = "simple"
 
 
 class In3(Enum):
-    cookie = 'cookie'
+    cookie = "cookie"
 
 
 class Style4(Enum):
-    form = 'form'
+    form = "form"
 
 
 @dataclass
@@ -188,7 +188,7 @@ class ParameterLocationItem3(JSONWizard):
         recursive_classes = True
 
     in_: Optional[In3] = None
-    style: Optional[Style4] = 'form'
+    style: Optional[Style4] = "form"
 
 
 ParameterLocation = Union[
@@ -200,13 +200,13 @@ ParameterLocation = Union[
 
 
 class Type1(Enum):
-    apiKey = 'apiKey'
+    apiKey = "apiKey"
 
 
 class In4(Enum):
-    header = 'header'
-    query = 'query'
-    cookie = 'cookie'
+    header = "header"
+    query = "query"
+    cookie = "cookie"
 
 
 @dataclass
@@ -221,7 +221,7 @@ class APIKeySecurityScheme(JSONWizard):
 
 
 class Type2(Enum):
-    http = 'http'
+    http = "http"
 
 
 @dataclass
@@ -250,11 +250,11 @@ HTTPSecurityScheme = Union[HTTPSecurityScheme1, HTTPSecurityScheme2]
 
 
 class Type4(Enum):
-    oauth2 = 'oauth2'
+    oauth2 = "oauth2"
 
 
 class Type5(Enum):
-    openIdConnect = 'openIdConnect'
+    openIdConnect = "openIdConnect"
 
 
 @dataclass
@@ -312,10 +312,10 @@ Callback = Dict[str, Any]
 
 
 class Style5(Enum):
-    form = 'form'
-    spaceDelimited = 'spaceDelimited'
-    pipeDelimited = 'pipeDelimited'
-    deepObject = 'deepObject'
+    form = "form"
+    spaceDelimited = "spaceDelimited"
+    pipeDelimited = "pipeDelimited"
+    deepObject = "deepObject"
 
 
 @dataclass
@@ -497,16 +497,13 @@ class Header(JSONWizard):
     required: Optional[bool] = False
     deprecated: Optional[bool] = False
     allowEmptyValue: Optional[bool] = False
-    style: Optional[Style] = 'simple'
+    style: Optional[Style] = "simple"
     explode: Optional[bool] = None
     allowReserved: Optional[bool] = False
     schema_: Optional[Union[Schema, Reference]] = None
     content: Optional[Dict[str, MediaType]] = None
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
-
-
-Paths = Union[Dict[str, PathItem], Dict[str, Any]]
 
 
 @dataclass
@@ -527,6 +524,9 @@ class PathItem(JSONWizard):
     trace: Optional[Operation] = None
     servers: Optional[List[Server]] = None
     parameters: Optional[List[Union[Parameter, Reference]]] = None
+
+
+Paths = Union[Dict[str, PathItem], Dict[str, Any]]
 
 
 @dataclass

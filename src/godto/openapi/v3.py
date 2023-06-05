@@ -10,7 +10,7 @@ from typing import Any, Dict, List, Optional, Union
 
 from dataclass_wizard import JSONWizard
 
-Reference = Dict[str, str]
+Reference = None  # Dict[str, str]
 
 
 @dataclass

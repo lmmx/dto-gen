@@ -25,6 +25,7 @@ class ModelConfig:
             model = OpenAPI_v3_Model.parse_raw(source)
         else:
             raise NotImplementedError("Spec not supported")
+        return model
 
 
 def model_paths(
@@ -39,15 +40,14 @@ def model_paths(
     A specific attribute to extract from the param info can be retrieved, or else
     if `extract` is None the entire parameter will be provided.
     """
-    model_cfg = ModelConfig(spec=version)
+    model_cfg = ModelConfig(spec=spec)
     model = model_cfg.load(source=schema_json)
-    return model.paths.__root__
     path_info = {}
     for path, path_schema in model.paths.__root__.items():
         path_info[path] = {}
         params = getattr(path_schema, method).parameters
         if params is not None:
             for param in params:
-                extracted_param_info = param if info is None else getattr(param, info)
-                path_info[path][param.name] = extracted_param_info
+                param_info = param if extract is None else getattr(param, extract)
+                path_info[path][param.name] = param_info
     return path_info

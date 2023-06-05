@@ -5,12 +5,12 @@ Data Transfer Object (DTO) codegen from JSON schemas following the OpenAPI spec
 ## Usage
 
 To work with an OpenAPI schema, load it with the `Model` class,
-which is a [Dataclass Wizard](https://github.com/rnag/dataclass-wizard/) deserialiser.
+which is a Pydantic model (however note that the class name 'Model' comes from the OpenAPI spec).
 
 ```py
 from godto.openapi.v3 import Model
 
-model = Model.from_json(schema_json)
+model = Model.parse_raw(schema_json)
 ```
 
 For example the Transport for London `StopPoint` API schema
@@ -27,6 +27,4 @@ schema_json = path_to_schema.read_text()
 
 ## Requirements
 
-Python 3.9 or 3.10
-
-- Awaiting [bugfix](https://github.com/rnag/dataclass-wizard/issues/89) for 3.11+
+Python 3.9+

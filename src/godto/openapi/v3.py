@@ -15,6 +15,7 @@ from pydantic import (
     Field,
     PositiveFloat,
     conint,
+    conlist,
     constr,
 )
 
@@ -24,26 +25,17 @@ class Reference(BaseModel):
 
 
 class Contact(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     name: Optional[str] = None
     url: Optional[str] = None
     email: Optional[EmailStr] = None
 
 
 class License(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     name: str
     url: Optional[str] = None
 
 
 class ServerVariable(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     enum: Optional[List[str]] = None
     default: str
     description: Optional[str] = None
@@ -64,9 +56,6 @@ class Discriminator(BaseModel):
 
 
 class XML(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     name: Optional[str] = None
     namespace: Optional[AnyUrl] = None
     prefix: Optional[str] = None
@@ -75,9 +64,6 @@ class XML(BaseModel):
 
 
 class Example(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     summary: Optional[str] = None
     description: Optional[str] = None
     value: Optional[Any] = None
@@ -93,9 +79,6 @@ class SecurityRequirement(BaseModel):
 
 
 class ExternalDocumentation(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     description: Optional[str] = None
     url: str
 
@@ -199,9 +182,6 @@ class In4(Enum):
 
 
 class APIKeySecurityScheme(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     type: Type1
     name: str
     in_: In4 = Field(..., alias="in")
@@ -221,9 +201,6 @@ class Type2(Enum):
 
 
 class HTTPSecurityScheme1(HTTPSecuritySchemeItem):
-    class Config:
-        extra = Extra.forbid
-
     scheme: str
     bearerFormat: Optional[str] = None
     description: Optional[str] = None
@@ -231,9 +208,6 @@ class HTTPSecurityScheme1(HTTPSecuritySchemeItem):
 
 
 class HTTPSecurityScheme2(HTTPSecuritySchemeItem1):
-    class Config:
-        extra = Extra.forbid
-
     scheme: str
     bearerFormat: Optional[str] = None
     description: Optional[str] = None
@@ -241,9 +215,6 @@ class HTTPSecurityScheme2(HTTPSecuritySchemeItem1):
 
 
 class HTTPSecurityScheme(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     __root__: Union[HTTPSecurityScheme1, HTTPSecurityScheme2]
 
 
@@ -256,45 +227,30 @@ class Type5(Enum):
 
 
 class OpenIdConnectSecurityScheme(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     type: Type5
     openIdConnectUrl: str
     description: Optional[str] = None
 
 
 class ImplicitOAuthFlow(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     authorizationUrl: str
     refreshUrl: Optional[str] = None
     scopes: Dict[str, str]
 
 
 class PasswordOAuthFlow(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     tokenUrl: str
     refreshUrl: Optional[str] = None
     scopes: Dict[str, str]
 
 
 class ClientCredentialsFlow(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     tokenUrl: str
     refreshUrl: Optional[str] = None
     scopes: Dict[str, str]
 
 
 class AuthorizationCodeOAuthFlow(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     authorizationUrl: str
     tokenUrl: str
     refreshUrl: Optional[str] = None
@@ -313,9 +269,6 @@ class Style5(Enum):
 
 
 class Info(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     title: str
     description: Optional[str] = None
     termsOfService: Optional[str] = None
@@ -325,18 +278,12 @@ class Info(BaseModel):
 
 
 class Server(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     url: str
     description: Optional[str] = None
     variables: Optional[Dict[str, ServerVariable]] = None
 
 
 class Schema(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     title: Optional[str] = None
     multipleOf: Optional[PositiveFloat] = None
     maximum: Optional[float] = None
@@ -375,18 +322,12 @@ class Schema(BaseModel):
 
 
 class Tag(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     name: str
     description: Optional[str] = None
     externalDocs: Optional[ExternalDocumentation] = None
 
 
 class OAuthFlows(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     implicit: Optional[ImplicitOAuthFlow] = None
     password: Optional[PasswordOAuthFlow] = None
     clientCredentials: Optional[ClientCredentialsFlow] = None
@@ -394,9 +335,6 @@ class OAuthFlows(BaseModel):
 
 
 class Link(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     operationId: Optional[str] = None
     operationRef: Optional[str] = None
     parameters: Optional[Dict[str, Any]] = None
@@ -406,9 +344,6 @@ class Link(BaseModel):
 
 
 class OAuth2SecurityScheme(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     type: Type4
     flows: OAuthFlows
     description: Optional[str] = None
@@ -424,9 +359,6 @@ class SecurityScheme(BaseModel):
 
 
 class Model(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     openapi: constr(regex=r"^3\.0\.\d(-.+)?$")
     info: Info
     externalDocs: Optional[ExternalDocumentation] = None
@@ -438,9 +370,6 @@ class Model(BaseModel):
 
 
 class Components(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     schemas: Optional[
         Dict[constr(regex=r"^[a-zA-Z0-9\.\-_]+$"), Union[Schema, Reference]]
     ] = None
@@ -471,9 +400,6 @@ class Components(BaseModel):
 
 
 class Response(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     description: str
     headers: Optional[Dict[str, Union[Header, Reference]]] = None
     content: Optional[Dict[str, MediaType]] = None
@@ -481,9 +407,6 @@ class Response(BaseModel):
 
 
 class MediaType(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     schema_: Optional[Union[Schema, Reference]] = Field(None, alias="schema")
     example: Optional[Any] = None
     examples: Optional[Dict[str, Union[Example, Reference]]] = None
@@ -491,9 +414,6 @@ class MediaType(BaseModel):
 
 
 class Header(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     description: Optional[str] = None
     required: Optional[bool] = False
     deprecated: Optional[bool] = False
@@ -508,18 +428,12 @@ class Header(BaseModel):
 
 
 class Paths(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     __root__: Union[
         Dict[constr(regex=r"^\/"), PathItem], Dict[constr(regex=r"^x-"), Any]
     ]
 
 
 class PathItem(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     field_ref: Optional[str] = Field(None, alias="$ref")
     summary: Optional[str] = None
     description: Optional[str] = None
@@ -532,23 +446,26 @@ class PathItem(BaseModel):
     patch: Optional[Operation] = None
     trace: Optional[Operation] = None
     servers: Optional[List[Server]] = None
-    parameters: Optional[List[Union[Parameter, Reference]]] = Field(
-        None, unique_items=True
-    )
+    parameters: Optional[
+        conlist(Union[Parameter, Reference], unique_items=True)
+    ] = Field(None)
+    # parameters: Optional[List[Union[Parameter, Reference]]] = Field(
+    #     None, unique_items=True
+    # )
 
 
 class Operation(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     tags: Optional[List[str]] = None
     summary: Optional[str] = None
     description: Optional[str] = None
     externalDocs: Optional[ExternalDocumentation] = None
     operationId: Optional[str] = None
-    parameters: Optional[List[Union[Parameter, Reference]]] = Field(
-        None, unique_items=True
-    )
+    parameters: Optional[
+        conlist(Union[Parameter, Reference], unique_items=True)
+    ] = Field(None)
+    # parameters: Optional[List[Union[Parameter, Reference]]] = Field(
+    #     None, unique_items=True
+    # )
     requestBody: Optional[Union[RequestBody, Reference]] = None
     responses: Responses
     callbacks: Optional[Dict[str, Union[Callback, Reference]]] = None
@@ -558,16 +475,10 @@ class Operation(BaseModel):
 
 
 class Responses(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     default: Optional[Union[Response, Reference]] = None
 
 
 class Parameter(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     name: str
     in_: str = Field(..., alias="in")
     description: Optional[str] = None
@@ -584,18 +495,12 @@ class Parameter(BaseModel):
 
 
 class RequestBody(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     description: Optional[str] = None
     content: Dict[str, MediaType]
     required: Optional[bool] = False
 
 
 class Encoding(BaseModel):
-    class Config:
-        extra = Extra.forbid
-
     contentType: Optional[str] = None
     headers: Optional[Dict[str, Union[Header, Reference]]] = None
     style: Optional[Style5] = None

@@ -1,4 +1,4 @@
 defopt
 jsonschema
-pydantic
+pydantic[email]
 ujson

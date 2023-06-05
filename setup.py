@@ -25,7 +25,6 @@ CLASSIFIERS = [
     "Topic :: Internet :: WWW/HTTP",
 ]
 INSTALL_REQUIRES = Path("requirements.txt").read_text().splitlines()
-INSTALL_DEPENDENCIES = Path("direct_dependency_requirements.txt").read_text().splitlines()
 EXTRAS_REQUIRE = {
     "docs": [
         #"sphinx>=4",
@@ -98,7 +97,6 @@ if __name__ == "__main__":
             ],
         },
         install_requires=INSTALL_REQUIRES,
-        dependency_links=INSTALL_DEPENDENCIES,
         extras_require=EXTRAS_REQUIRE,
         python_requires=PYTHON_REQUIRES,
     )

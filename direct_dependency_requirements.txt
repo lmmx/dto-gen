@@ -1,1 +1,0 @@
-https://github.com/rnag/dataclass-wizard/tarball/WIP-support-cyclic-references#egg=dataclass-wizard
